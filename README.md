@@ -1,4 +1,4 @@
-# leetcode-typescript
+# LeetCode in TypeScript Setup
 
 This is a Node.js setup for LeetCode in TypeScript. This also includes a testing functionality.
 
