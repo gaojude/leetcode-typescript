@@ -2,6 +2,7 @@
 
 This is a Node.js setup for LeetCode in TypeScript. This also includes a testing functionality.
 
+- Use `npm install` to download the dependencies.
 - To watch and compile, use `npm run start`.
 - To start the testing script, use `npm test`.
 
