@@ -17,7 +17,9 @@
   },
   "dependencies": {
     "@types/assert": "^1.5.2",
+    "@types/lodash": "^4.14.161",
     "@types/mocha": "^8.0.3",
-    "assert": "^2.0.0"
+    "assert": "^2.0.0",
+    "lodash": "^4.17.20"
   }
 }
