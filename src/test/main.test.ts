@@ -1,4 +1,4 @@
-import {search, findMinArrowShots} from '../main'
+import {search, findMinArrowShots, removeDuplicateLetters} from '../main'
 import assert from 'assert'
 
 describe('Binary search simple test', () => {
@@ -25,5 +25,14 @@ describe('findMinArrowShots sample tests', () => {
     })
     it('sample test 5', () => {
         assert(findMinArrowShots([[2,3],[2,3]]) === 1)
+    })
+})
+
+describe('removeDuplicateLetters sample tests', () => {
+    it('sample test 1', () => {
+        assert(removeDuplicateLetters("bcabc") === "abc")
+    })
+    it('sample test 2', () => {
+        assert(removeDuplicateLetters("cbacdcbc") === "acdb")
     })
 })

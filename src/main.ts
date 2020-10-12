@@ -35,3 +35,38 @@ export function findMinArrowShots(points: number[][]): number {
 
     return k;
 };
+
+export function removeDuplicateLetters(s: string): string {
+    function getFirstPosition(chars: string[]): number {
+        const last = new Map<string, number>();
+        chars.slice().reverse().forEach((char, index) => {
+            if (!last.has(char)) {
+                last.set(char, chars.length - 1 - index);
+            }
+        })
+        let result = chars[0];
+        let resultIndex = 0;
+        let minLeftLast = last.get(result)!;
+        chars.forEach((char, index) => {
+            if (minLeftLast >= index) {
+                if (char.charCodeAt(0) < result.charCodeAt(0)) {
+                    result = char;
+                    resultIndex = index;
+                }
+            }
+            minLeftLast = Math.min(minLeftLast, last.get(char)!);
+        });
+        return resultIndex;
+    }
+
+    let chars = [...s];
+    const result: string[] = [];
+    while (chars.length > 0) {
+        const firstPosition = getFirstPosition(chars);
+        const firstChar = chars[firstPosition];
+        result.push(firstChar);
+        chars = chars.slice(firstPosition).filter((char) => char !== firstChar);
+        
+    }
+    return result.join('');
+};
