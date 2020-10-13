@@ -1,4 +1,4 @@
-import {search, findMinArrowShots, removeDuplicateLetters} from '../main'
+import {search, findMinArrowShots, removeDuplicateLetters, buddyStrings} from '../main'
 import assert from 'assert'
 
 describe('Binary search simple test', () => {
@@ -34,5 +34,23 @@ describe('removeDuplicateLetters sample tests', () => {
     })
     it('sample test 2', () => {
         assert(removeDuplicateLetters("cbacdcbc") === "acdb")
+    })
+})
+
+describe('buddyStrings tests', () => {
+    it('test 1', () => {
+        assert(buddyStrings('ab', 'ba'));
+    })
+    it('test 2', () => {
+        assert(!buddyStrings('ab', 'ab'));
+    })
+    it('test 3', () => {
+        assert(buddyStrings('aa', 'aa'));
+    })
+    it('test 4', () => {
+        assert(buddyStrings('aaaaaaabc', 'aaaaaaacb'))
+    })
+    it('test 5', () => {
+        assert(!buddyStrings('', 'aa'));
     })
 })

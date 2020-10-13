@@ -70,3 +70,13 @@ export function removeDuplicateLetters(s: string): string {
     }
     return result.join('');
 };
+
+export function buddyStrings(A: string, B: string): boolean {
+    const pairs = _.zip([...A], [...B]).filter(([a, b]) => a !== b);
+    if (pairs.length === 2) {
+        return pairs[0][0] === pairs[1][1] && pairs[0][1] === pairs[1][0];
+    }
+    return pairs.length === 0 && _.uniq([...A]).length !== A.length ;
+};
+
+ 
