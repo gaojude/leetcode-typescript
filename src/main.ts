@@ -160,14 +160,14 @@ export function rob(nums: number[]): number {
 };
 
 export function rotate(nums: number[], k: number): void {
-    function swap(i: number, j: number) {
+    function reverse(i: number, j: number) {
         for (let m = i; m < (i + j) / 2; ++m) {
             [nums[m], nums[j - m + i]] = [nums[j - m + i], nums[m]]
         }
     }
 
-    swap(0, nums.length - 1);
+    reverse(0, nums.length - 1);
     const modN = k % nums.length;
-    swap(0, modN - 1);
-    swap(modN, nums.length - 1);
+    reverse(0, modN - 1);
+    reverse(modN, nums.length - 1);
 };
