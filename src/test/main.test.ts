@@ -8,7 +8,8 @@ import {
     rob,
     rotate,
     searchMatrix,
-    maxProfit
+    maxProfit,
+    minDominoRotations
 } from '../main';
 import assert from 'assert';
 
@@ -207,5 +208,19 @@ describe('Best Time to Buy and Sell Stock IV tests', () => {
         const k = 2;
         const output = 7;
         assert(maxProfit(k, arr) === output);
+    });
+});
+
+
+describe('Minimum Domino Rotations For Equal Row tests', () => {
+    it('test 1', () => {
+        const arr1 = [2, 1, 2, 4, 2, 2];
+        const arr2 = [5, 2, 6, 2, 3, 2];
+        assert(minDominoRotations(arr1, arr2) === 2)
+    });
+    it('test 2', () => {
+        const arr1 = [3, 5, 1, 2, 3]
+        const arr2 = [3, 6, 3, 3, 4]
+        assert(minDominoRotations(arr1, arr2) === -1);
     });
 });

@@ -220,3 +220,29 @@ export function maxProfit(k: number, prices: number[]): number {
     }
     return Math.max(..._.times(n, (i: number) => sell[i]), 0);
 }
+
+export function minDominoRotations(A: number[], B: number[]): number {
+    const [headA, ...restA] = A;
+    const [headB, ...restB] = B;
+
+    function compute(target: number, rowNum: number) {
+        return (_.zip(restA, restB) as [number, number][])
+            .map((pair: [number, number]) => {
+                    if (pair[rowNum] === target) return 0;
+                    else if (pair[1 - rowNum] === target) return 1;
+                    else return Infinity;
+                }
+            )
+            .reduce((prev: number, curr: number) => prev + curr, 0);
+    }
+
+    const candidates = [
+        compute(headA, 0),
+        compute(headB, 1),
+        compute(headB, 0) + 1,
+        compute(headA, 0) + 1
+    ]
+
+    const min = Math.min(...candidates);
+    return min === Infinity ? -1 : min;
+}
