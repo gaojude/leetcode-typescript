@@ -246,3 +246,34 @@ export function minDominoRotations(A: number[], B: number[]): number {
     const min = Math.min(...candidates);
     return min === Infinity ? -1 : min;
 }
+
+
+class Node {
+    val: number
+    neighbors: Node[]
+
+    constructor(val?: number, neighbors?: Node[]) {
+        this.val = (val === undefined ? 0 : val)
+        this.neighbors = (neighbors === undefined ? [] : neighbors)
+    }
+}
+
+export function cloneGraph(node: Node | null): Node | null {
+    function getNodes(): Node[] {
+        if (node === null) return [];
+        const nodes = new Set<Node>();
+        function dfs(v: Node) {
+            nodes.add(v);
+            v.neighbors.filter((n: Node) => !nodes.has(n)).forEach(dfs);
+        }
+        dfs(node);
+        return [...nodes];
+    }
+    const nodes = getNodes();
+    const mapValueToDeepCopiedNode = new Map<number, Node>(nodes.map(({val}: Node) => [val, new Node(val)]));
+    nodes.forEach(({val, neighbors}: Node) => {
+        const node = mapValueToDeepCopiedNode.get(val)!;
+        node.neighbors = neighbors.map((n: Node) => mapValueToDeepCopiedNode.get(n.val)!);
+    })
+    return [...mapValueToDeepCopiedNode.values()][0];
+}
