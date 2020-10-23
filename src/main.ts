@@ -262,13 +262,16 @@ export function cloneGraph(node: Node | null): Node | null {
     function getNodes(): Node[] {
         if (node === null) return [];
         const nodes = new Set<Node>();
+
         function dfs(v: Node) {
             nodes.add(v);
             v.neighbors.filter((n: Node) => !nodes.has(n)).forEach(dfs);
         }
+
         dfs(node);
         return [...nodes];
     }
+
     const nodes = getNodes();
     const mapValueToDeepCopiedNode = new Map<number, Node>(nodes.map(({val}: Node) => [val, new Node(val)]));
     nodes.forEach(({val, neighbors}: Node) => {
@@ -276,4 +279,27 @@ export function cloneGraph(node: Node | null): Node | null {
         node.neighbors = neighbors.map((n: Node) => mapValueToDeepCopiedNode.get(n.val)!);
     })
     return [...mapValueToDeepCopiedNode.values()][0];
+}
+
+class TreeNode {
+    val: number
+    left: TreeNode | null
+    right: TreeNode | null
+
+    constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) {
+        this.val = (val === undefined ? 0 : val)
+        this.left = (left === undefined ? null : left)
+        this.right = (right === undefined ? null : right)
+    }
+}
+
+export function minDepth(root: TreeNode | null): number {
+    if (root === null) {
+        return 0;
+    }
+    const children = [root.left, root.right].filter((node: TreeNode | null) => node !== null) as TreeNode[];
+    if (children.length === 0) {
+        return 1;
+    }
+    return 1 + (children.length > 0 ? Math.min(...children.map(minDepth)) : 0);
 }

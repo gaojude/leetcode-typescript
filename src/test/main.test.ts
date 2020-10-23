@@ -9,7 +9,8 @@ import {
     rotate,
     searchMatrix,
     maxProfit,
-    minDominoRotations
+    minDominoRotations,
+    minDepth
 } from '../main';
 import assert from 'assert';
 
